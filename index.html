@@ -72,6 +72,8 @@
   .cta-form .radio-label{color:#222;}
   .cta-form .other-input input{background:#fff;border-color:#ccc;color:#000;}
   .cta-form .other-input input::placeholder{color:#aaa;}
+  .select-dark{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:42px;}
+  .select-light{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:42px;}
 
   /* SUCCESS */
   .success{display:none;text-align:center;padding:12px 0;}
@@ -360,7 +362,7 @@
   </div>
   <div class="form-group">
     <label for="h-disco">Your DisCo</label>
-    <select id="h-disco" aria-required="true" style="background:#1c1c1c;border:1px solid var(--border);border-radius:8px;padding:14px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;width:100%;">
+    <select id="h-disco" aria-required="true" class="select-dark" style="background-color:#1c1c1c;border:1px solid var(--border);border-radius:8px;padding:14px;color:#fff;font-size:15px;font-family:'Inter',sans-serif;outline:none;width:100%;">
       <option value="" disabled selected style="color:#444">Select your DisCo</option>
       <option value="Ikeja Electric">Ikeja Electric</option>
       <option value="EKEDC">Eko Electricity (EKEDC)</option>
@@ -880,7 +882,7 @@
   </div>
   <div class="form-group">
     <label style="color:#555">Your DisCo</label>
-    <select id="c-disco" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:14px;color:#000;font-size:15px;font-family:'Inter',sans-serif;outline:none;width:100%;">
+    <select id="c-disco" class="select-light" style="background-color:#fff;border:1px solid #ccc;border-radius:8px;padding:14px;color:#000;font-size:15px;font-family:'Inter',sans-serif;outline:none;width:100%;">
       <option value="" disabled selected style="color:#aaa">Select your DisCo</option>
       <option value="Ikeja Electric">Ikeja Electric</option>
       <option value="EKEDC">Eko Electricity (EKEDC)</option>

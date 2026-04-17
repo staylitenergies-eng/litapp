@@ -1,0 +1,399 @@
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: transparent; font-family: Inter, sans-serif; }
+
+  .section { background: #0A0A0A; border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+
+  /* HERO ART */
+  .hero-art {
+    position: relative;
+    height: 340px;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-art canvas { position: absolute; inset: 0; }
+  .hero-copy {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .hero-copy .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(204,255,0,0.1);
+    border: 1px solid rgba(204,255,0,0.25);
+    border-radius: 99px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #CCFF00;
+    margin-bottom: 18px;
+  }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: #CCFF00; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .hero-copy h1 { font-size: 38px; font-weight: 900; line-height: 1.05; letter-spacing: -2px; color: #fff; }
+  .hero-copy h1 span { color: #CCFF00; }
+  .hero-copy p { font-size: 14px; color: #888; margin-top: 10px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+  /* DASHBOARD SECTION */
+  .dash-section {
+    background: #0A0A0A;
+    border-radius: 16px;
+    padding: 32px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .dash-copy { flex: 1; padding-top: 20px; }
+  .dash-copy .label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #CCFF00; margin-bottom: 14px; }
+  .dash-copy h2 { font-size: 28px; font-weight: 900; letter-spacing: -1.5px; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+  .dash-copy p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 20px; }
+  .feature-list { display: flex; flex-direction: column; gap: 10px; }
+  .feat { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #888; }
+  .feat svg { flex-shrink: 0; margin-top: 2px; }
+
+  /* PHONE FRAME */
+  .phone-wrap { flex-shrink: 0; }
+  .phone {
+    width: 220px;
+    background: #141414;
+    border-radius: 36px;
+    border: 2px solid #2a2a2a;
+    padding: 14px 12px;
+    position: relative;
+  }
+  .phone-notch {
+    width: 70px;
+    height: 22px;
+    background: #0A0A0A;
+    border-radius: 0 0 14px 14px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .notch-cam { width: 8px; height: 8px; border-radius: 50%; background: #1e1e1e; }
+
+  /* SCREEN CONTENT */
+  .screen { display: flex; flex-direction: column; gap: 10px; }
+  .screen-header { display: flex; justify-content: space-between; align-items: center; padding: 0 2px; }
+  .screen-title { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: -.5px; }
+  .screen-title span { color: #CCFF00; }
+  .screen-date { font-size: 10px; color: #555; }
+
+  /* GAUGE */
+  .gauge-card {
+    background: #1a1a1a;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+  }
+  .gauge-wrap { position: relative; width: 120px; height: 66px; margin: 0 auto 8px; }
+  .gauge-wrap svg { width: 120px; height: 66px; }
+  .gauge-label { font-size: 10px; color: #555; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .08em; }
+  .gauge-kw { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -1px; }
+  .gauge-kw span { font-size: 11px; color: #666; font-weight: 400; }
+  .gauge-sub { font-size: 10px; color: #CCFF00; margin-top: 2px; }
+
+  /* APPLIANCES */
+  .appliance-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: .08em; padding: 0 2px; }
+  .app-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .app-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .app-info { flex: 1; }
+  .app-name { font-size: 12px; font-weight: 700; color: #fff; }
+  .app-usage { font-size: 10px; color: #666; margin-top: 1px; }
+  .app-cost { font-size: 13px; font-weight: 800; color: #CCFF00; }
+  .app-bar-wrap { height: 3px; background: #2a2a2a; border-radius: 99px; margin-top: 5px; }
+  .app-bar { height: 3px; border-radius: 99px; background: #CCFF00; }
+
+  /* ALERT */
+  .alert-card {
+    background: rgba(204,255,0,0.07);
+    border: 1px solid rgba(204,255,0,0.18);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .alert-text { font-size: 11px; color: #CCFF00; line-height: 1.4; }
+  .alert-text strong { font-weight: 700; display: block; }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0 2px;
+    border-top: 1px solid #1e1e1e;
+    margin-top: 4px;
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .nav-dot { width: 4px; height: 4px; border-radius: 50%; background: #CCFF00; }
+</style>
+
+<!-- HERO ART -->
+<div class="section">
+  <div class="hero-art">
+    <canvas id="c"></canvas>
+    <div class="hero-copy">
+      <div class="pill"><span class="pill-dot"></span>Launching Soon</div>
+      <h1>Your light didn't<br>just finish.<br><span>Something ate it.</span></h1>
+      <p>Real time electricity intelligence. Every naira accounted for.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD SECTION -->
+<div class="section">
+  <div class="dash-section">
+    <div class="dash-copy">
+      <div class="label">The product</div>
+      <h2>Your electricity,<br>finally visible.</h2>
+      <p>See every appliance, every naira, every kWh in real time. Know before you run out. Control from anywhere.</p>
+      <div class="feature-list">
+        <div class="feat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Live naira cost per appliance
+        </div>
+        <div class="feat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Low balance alerts before darkness
+        </div>
+        <div class="feat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+          Remote on and off from your phone
+        </div>
+        <div class="feat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Weekly spend reports in naira
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"><div class="notch-cam"></div></div>
+        <div class="screen">
+
+          <div class="screen-header">
+            <div class="screen-title">lit<span>.</span></div>
+            <div class="screen-date">Thu, 12 Mar</div>
+          </div>
+
+          <!-- GAUGE -->
+          <div class="gauge-card">
+            <div class="gauge-label">Units remaining</div>
+            <div class="gauge-wrap">
+              <svg viewBox="0 0 120 66" fill="none">
+                <path d="M10 60 A50 50 0 0 1 110 60" stroke="#222" stroke-width="8" stroke-linecap="round"/>
+                <path d="M10 60 A50 50 0 0 1 110 60" stroke="#CCFF00" stroke-width="8" stroke-linecap="round"
+                  stroke-dasharray="157" stroke-dashoffset="50"/>
+                <text x="60" y="56" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="Inter">23.4</text>
+              </svg>
+            </div>
+            <div class="gauge-kw">23.4 <span>kWh left</span></div>
+            <div class="gauge-sub">≈ 2 days 14 hrs at current usage</div>
+          </div>
+
+          <!-- APPLIANCES -->
+          <div class="appliance-label">Live consumption</div>
+
+          <div class="app-card">
+            <div class="app-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h2M7 14h2"/><path d="M19 10v4"/></svg>
+            </div>
+            <div class="app-info">
+              <div class="app-name">AC Unit</div>
+              <div class="app-usage">8.2 kWh today · running</div>
+              <div class="app-bar-wrap"><div class="app-bar" style="width:72%"></div></div>
+            </div>
+            <div class="app-cost">₦1,845</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M5 10h14"/><circle cx="12" cy="15" r="1.5"/></svg>
+            </div>
+            <div class="app-info">
+              <div class="app-name">Fridge</div>
+              <div class="app-usage">3.1 kWh today · running</div>
+              <div class="app-bar-wrap"><div class="app-bar" style="width:28%;background:#555"></div></div>
+            </div>
+            <div class="app-cost" style="color:#888">₦697</div>
+          </div>
+
+          <!-- ALERT -->
+          <div class="alert-card">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="1.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <div class="alert-text">
+              <strong>Top up soon</strong>
+              At this rate, units run out Friday evening.
+            </div>
+          </div>
+
+          <!-- BOTTOM NAV -->
+          <div class="bottom-nav">
+            <div class="nav-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              <div class="nav-dot"></div>
+            </div>
+            <div class="nav-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="nav-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="nav-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const LIME = '#CCFF00';
+
+function resize() {
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.parentElement.offsetHeight;
+}
+resize();
+
+const particles = [];
+const bolts = [];
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height + 10;
+    this.vx = (Math.random() - .5) * .6;
+    this.vy = -(Math.random() * 1.2 + .4);
+    this.life = 1;
+    this.decay = Math.random() * .008 + .003;
+    this.r = Math.random() * 1.5 + .5;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+    if (this.life <= 0) this.reset();
+  }
+  draw() {
+    ctx.globalAlpha = this.life * .6;
+    ctx.fillStyle = LIME;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+class Bolt {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.life = 1;
+    this.decay = .08 + Math.random() * .1;
+    this.segs = this.build();
+  }
+  build() {
+    const segs = [];
+    let cx = this.x, cy = this.y;
+    const len = 4 + Math.floor(Math.random() * 5);
+    for (let i = 0; i < len; i++) {
+      const nx = cx + (Math.random() - .4) * 30;
+      const ny = cy + (Math.random() * 18 + 6);
+      segs.push([cx, cy, nx, ny]);
+      cx = nx; cy = ny;
+    }
+    return segs;
+  }
+  update() { this.life -= this.decay; if (this.life <= 0) this.reset(); }
+  draw() {
+    ctx.globalAlpha = this.life * .25;
+    ctx.strokeStyle = LIME;
+    ctx.lineWidth = .8;
+    ctx.beginPath();
+    this.segs.forEach(([x1,y1,x2,y2], i) => {
+      if (i === 0) ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    });
+    ctx.stroke();
+  }
+}
+
+for (let i = 0; i < 60; i++) particles.push(new Particle());
+for (let i = 0; i < 8; i++) bolts.push(new Bolt());
+
+function drawGrid() {
+  ctx.globalAlpha = .04;
+  ctx.strokeStyle = LIME;
+  ctx.lineWidth = .5;
+  const gx = 40, gy = 40;
+  for (let x = 0; x < canvas.width; x += gx) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+  }
+  for (let y = 0; y < canvas.height; y += gy) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  }
+}
+
+function drawMeter() {
+  const cx = canvas.width * .5, cy = canvas.height * .72, r = 70;
+  ctx.globalAlpha = .06;
+  ctx.strokeStyle = LIME;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, Math.PI, 0);
+  ctx.stroke();
+  ctx.globalAlpha = .12;
+  ctx.lineWidth = 2;
+  const pct = .63;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, Math.PI, Math.PI + Math.PI * pct);
+  ctx.stroke();
+}
+
+function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
+  drawMeter();
+  particles.forEach(p => { p.update(); p.draw(); });
+  bolts.forEach(b => { b.update(); b.draw(); });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(loop);
+}
+loop();
+window.addEventListener('resize', resize);
+</script>

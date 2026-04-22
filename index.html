@@ -1337,7 +1337,7 @@
         document.getElementById('h-position').textContent = `You are #${liveCount} in line.`;
         document.getElementById('heroForm').style.display = 'none';
         document.getElementById('heroSuccess').style.display = 'block';
-        if(window.fbq) fbq('track', 'Lead');
+        if(window.fbq){ fbq('track', 'Lead'); fbq('track', 'ViewContent'); }
       })
       .catch(e => {
         btn.textContent = 'Get Early Access →';
@@ -1372,7 +1372,7 @@
         document.getElementById('waitlistCount').textContent = liveCount.toLocaleString();
         document.getElementById('ctaForm').style.display = 'none';
         document.getElementById('ctaSuccess').style.display = 'block';
-        if(window.fbq) fbq('track', 'Lead');
+        if(window.fbq){ fbq('track', 'Lead'); fbq('track', 'ViewContent'); }
       })
       .catch(e => {
         btn.textContent = 'Join the Waitlist, Free →';
